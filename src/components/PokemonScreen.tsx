@@ -1,10 +1,12 @@
 import { StackScreenProps } from '@react-navigation/stack'
 import React from 'react'
-import { Dimensions, Image, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, ActivityIndicatorBase, Dimensions, Image, StyleSheet, Text, View } from 'react-native'
 import { RootStackParams } from '../navigator/Navigator'
 import { PokemonImage } from './PokemonImage'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { usePokemon } from '../hooks/usePokemon'
+import { PokemonDetails } from './PokemonDetails'
 
 interface Props extends StackScreenProps<RootStackParams, 'PokemonScreen'> {}
 
@@ -15,6 +17,8 @@ const windowHeight = Dimensions.get('window').height
 const PokemonScreen = ( { navigation, route}: Props ) => {
     
     const { simplePokemon, color } = route.params
+    const { isLoading, pokemon } = usePokemon( simplePokemon.id )
+    // console.log(isLoading)
     return (
         <View
             style={{
@@ -44,9 +48,17 @@ const PokemonScreen = ( { navigation, route}: Props ) => {
                     borderTopLeftRadius: 30,
                     elevation: 2,
                     zIndex: -1000,
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}
             >
 
+                {/* Detalles y loading */}
+                {
+                    isLoading
+                        ? <ActivityIndicator color={color} size={50} />
+                        : <PokemonDetails pokemon={ pokemon } />
+                }
             </View>
         </View>
     )

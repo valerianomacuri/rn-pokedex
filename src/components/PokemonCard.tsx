@@ -59,23 +59,12 @@ export const PokemonCard = ({pokemon}: Props) => {
                     { pokemon.name.toUpperCase() }
                     { '\n#' + pokemon.id }
                     </Text>
-                <Image source={{ uri: pokemon.picture }} style={{ 
-                    width: 90, 
-                    height: 90,
-                    alignSelf: 'flex-end',
-                }} />
                 <Image 
-                 source={ require('../assets/pokebola-blanca.png')}
-                 style={{
-                     width: 110,
-                     height: 110,
-                     position: 'absolute',
-                     opacity: 0.2,
-                     right: -20,
-                     bottom: -20, 
-                     zIndex: -100,
-                 }}
+                    source={ require('../assets/pokebola-blanca.png')}
+                    style={styles.pokebola}
                 />
+                <Image source={{ uri: pokemon.picture }} style={ styles.pokemon } />
+                
 
             </View>
         </TouchableOpacity>
@@ -89,7 +78,8 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         marginBottom: 10,
         marginLeft: 10,
-        justifyContent: 'space-between',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
         elevation: 10,
 
         // Sombras en IOS
@@ -108,5 +98,19 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginTop: 15,
         fontSize: 12,
+    },
+    pokebola: {
+        width: 110,
+        height: 110,
+        position: 'absolute',
+        opacity: 0.2,
+        right: -20,
+        bottom: -20, 
+        zIndex: -100,
+    },
+    pokemon: {
+        width: 90, 
+        height: 90,
+        alignSelf: 'flex-end',
     }
 })
