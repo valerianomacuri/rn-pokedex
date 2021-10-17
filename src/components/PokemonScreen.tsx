@@ -57,7 +57,7 @@ const PokemonScreen = ( { navigation, route}: Props ) => {
                 {
                     isLoading
                         ? <ActivityIndicator color={color} size={50} />
-                        : <PokemonDetails pokemon={ pokemon } />
+                        : <PokemonDetails pokemon={ pokemon } bgColor={ color }/>
                 }
             </View>
         </View>

@@ -36,6 +36,10 @@ export const PokemonCard = ({pokemon}: Props) => {
                         throw new Error('Unexpected platform key')
                     }
             })
+            .catch((error) => {
+                console.log(error)
+                throw error
+            }) 
         return () => {
             isMounted.current = false
         }
